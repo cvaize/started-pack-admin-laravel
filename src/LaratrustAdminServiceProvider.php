@@ -69,7 +69,6 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
                 base_path('resources/views/welcome.blade.php'),
                 base_path('resources/assets/js/app.js'),
                 base_path('resources/assets/sass/app.scss'),
-                base_path('routes/web.php'),
                 base_path('database/seeds/DatabaseSeeder.php'),
                 base_path('webpack.mix.js'),
             ]);
@@ -78,6 +77,7 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
         // base_path('app/Providers')
         // base_path('app/config')
         // base_path('app/Http/Kernel.php'),
+        // base_path('routes/web.php'),
         Artisan::command('StartedPackAdminLaravel:publish', function () {
             $this->info("StartedPackAdminLaravel publish");
             $date = date('Y_m_d_His');
