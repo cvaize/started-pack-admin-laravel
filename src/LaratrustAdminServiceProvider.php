@@ -32,6 +32,7 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
             $cmd .= ' && php artisan StartedPackAdminLaravel:install';
             $cmd .= ' && php artisan StartedPackAdminLaravel:delete';
             $cmd .= ' && php artisan StartedPackAdminLaravel:publish';
+            $cmd .= ' && php artisan StartedPackAdminLaravel:front';
             $cmd .= ' && php artisan StartedPackAdminLaravel:optima';
             system($cmd);
         });
