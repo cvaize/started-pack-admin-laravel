@@ -5,7 +5,7 @@
 
 Вставьте это в файл `composer.json`
 
-```
+```php
 "scripts": {
      "post-update-cmd": [
          ... other stuff ...
