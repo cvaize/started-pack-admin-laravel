@@ -20,6 +20,7 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
             __DIR__.'/Vendor/resources' => base_path('resources'),
             __DIR__.'/Vendor/routes' => base_path('routes'),
             __DIR__.'/Vendor/public' => base_path('public'),
+            __DIR__.'/Sources/webpack.mix.js' => base_path('webpack.mix.js'),
         ], 'StartedPackAdminLaravel');
     }
 
@@ -52,6 +53,10 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
         });
         Artisan::command('StartedPackAdminLaravel:delete', function () {
             $this->info("StartedPackAdminLaravel Delete Files");
+            $file = File::glob(base_path('database/migrations/*create_users_table.php'));
+            if(!empty($file)){
+                File::delete($file[0]);
+            }
             File::deleteDirectory(base_path('app/Http/Controllers/Auth'));
             File::deleteDirectory(base_path('resources/views/auth'));
             File::deleteDirectory(base_path('app/Providers'));
@@ -69,11 +74,21 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
                 base_path('bootstrap/app.php'),
                 base_path('app/Http/Kernel.php'),
                 base_path('database/seeds/DatabaseSeeder.php'),
+                base_path('webpack.mix.js'),
             ]);
         });
         Artisan::command('StartedPackAdminLaravel:publish', function () {
             $this->info("StartedPackAdminLaravel publish");
+            $date = date('Y_m_d_His');
+            $migration_path = database_path("migrations/${date}_create_users_table.php");
+            File::copy(__DIR__.'/Sources/migrations/create_users_table.php', $migration_path);
             $cmd = 'php artisan vendor:publish --tag="StartedPackAdminLaravel"';
+            system($cmd);
+        });
+        Artisan::command('StartedPackAdminLaravel:front', function () {
+            $this->info("StartedPackAdminLaravel front");
+            $cmd = 'npm i && npm remove axios bootstrap popper.js';
+            $cmd .= ' && npm i axios popper.js bootstrap jquery-mask-plugin alertifyjs bootstrap-datepicker ';
             system($cmd);
         });
         Artisan::command('StartedPackAdminLaravel:optima', function () {
