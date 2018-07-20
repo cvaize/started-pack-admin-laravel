@@ -72,7 +72,6 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
                 base_path('resources/assets/js/app.js'),
                 base_path('resources/assets/sass/app.scss'),
                 base_path('routes/web.php'),
-                base_path('bootstrap/app.php'),
                 base_path('app/Http/Kernel.php'),
                 base_path('database/seeds/DatabaseSeeder.php'),
                 base_path('webpack.mix.js'),
