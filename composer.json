@@ -4,8 +4,8 @@
     "require": {
         "php": ">=7.0.0"
     },
-    "license": "MIT",
-    "version": "0.0.1",
+    "license": "GPL-3.0",
+    "version": "dev-master",
     "authors": [
         {
             "name": "cvaize",
