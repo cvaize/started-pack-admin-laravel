@@ -12,6 +12,15 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
     public function boot()
     {
 
+        $this->publishes([
+            __DIR__.'/Vendor/config' => base_path('config'),
+            __DIR__.'/Vendor/routes' => base_path('routes'),
+            __DIR__.'/Vendor/database' => base_path('database'),
+            __DIR__.'/Vendor/app' => base_path('app'),
+            __DIR__.'/Vendor/resources' => base_path('resources'),
+            __DIR__.'/Vendor/routes' => base_path('routes'),
+            __DIR__.'/Vendor/public' => base_path('public'),
+        ], 'StartedPackAdminLaravel');
     }
 
     public function register()
@@ -19,24 +28,59 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
         Artisan::command('StartedPackAdminLaravel:init', function () {
             $this->info("StartedPackAdminLaravel Initialization");
             $cmd = 'php artisan StartedPackAdminLaravel:install';
-//            $cmd .= ' && php artisan ladmin:routes';
-//            $cmd .= ' && php artisan ladmin:install';
-//            $cmd .= ' && php artisan ladmin:publish:laratrust';
-//            $cmd .= ' && php artisan ladmin:files:delete';
-//            $cmd .= ' && php artisan ladmin:publish:config';
-//            $cmd .= ' && php artisan ladmin:publish:front';
-//            $cmd .= ' && php artisan ladmin:publish:admin';
-//            $cmd .= ' && php artisan ladmin:migration';
-//            $cmd .= ' && php artisan ladmin:cache';
-//            $cmd .= ' && composer dump-autoload';
+            $cmd .= ' && php artisan StartedPackAdminLaravel:install';
+            $cmd .= ' && php artisan StartedPackAdminLaravel:delete';
+            $cmd .= ' && php artisan StartedPackAdminLaravel:publish';
+            $cmd .= ' && php artisan StartedPackAdminLaravel:optima';
             system($cmd);
         });
         Artisan::command('StartedPackAdminLaravel:install', function () {
             $this->info("StartedPackAdminLaravel install");
             $cmd = 'composer update';
-            $cmd .= '&& php artisan make:auth';
-            $cmd .= '&& composer require "santigarcor/laratrust:^5.0" "laravelcollective/html:^5.6.10" "fzaninotto/faker:^1.8.0" ';
+            $cmd .= ' && php artisan make:auth';
+            $cmd .= ' && composer require "santigarcor/laratrust:^5.0" "laravelcollective/html:^5.6.10" "fzaninotto/faker:^1.8.0" ';
             $cmd .= '"mcamara/laravel-localization:^1.3" "vsch/laravel-translation-manager:~2.6" "barryvdh/laravel-debugbar:^3.1"';
+            $cmd .= ' && php artisan vendor:publish --tag="laratrust"';
+            $cmd .= ' && php artisan laratrust:setup';
+            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=migrations';
+            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=config';
+            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=public --force';
+            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=lang';
+            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=views';
+            $cmd .= ' && composer dump-autoload';
+            system($cmd);
+        });
+        Artisan::command('StartedPackAdminLaravel:delete', function () {
+            $this->info("StartedPackAdminLaravel Delete Files");
+            File::deleteDirectory(base_path('app/Http/Controllers/Auth'));
+            File::deleteDirectory(base_path('resources/views/auth'));
+            File::deleteDirectory(base_path('app/Providers'));
+            File::deleteDirectory(base_path('app/config'));
+            File::delete([
+                base_path('app/Permission.php'),
+                base_path('app/Role.php'),
+                base_path('app/User.php'),
+                base_path('resources/views/layouts/app.blade.php'),
+                base_path('resources/views/home.blade.php'),
+                base_path('resources/views/welcome.blade.php'),
+                base_path('resources/assets/js/app.js'),
+                base_path('resources/assets/sass/app.scss'),
+                base_path('routes/web.php'),
+                base_path('bootstrap/app.php'),
+                base_path('app/Http/Kernel.php'),
+                base_path('database/seeds/DatabaseSeeder.php'),
+            ]);
+        });
+        Artisan::command('StartedPackAdminLaravel:publish', function () {
+            $this->info("StartedPackAdminLaravel publish");
+            $cmd = 'php artisan vendor:publish --tag="StartedPackAdminLaravel"';
+            system($cmd);
+        });
+        Artisan::command('StartedPackAdminLaravel:optima', function () {
+            $this->info("StartedPackAdminLaravel optimization");
+            $cmd = 'composer dump-autoload';
+            $cmd .= ' && composer update';
+            $cmd .= ' && php artisan config:clear';
             system($cmd);
         });
     }
