@@ -5,9 +5,7 @@
 
 Вставьте это в файл `composer.json`
 Это позволит вам избежать несостыковок в последующих обновлениях пакета
-Это инструкция к пакету [vsch/laravel-translation-manager](https://github.com/vsch/laravel-translation-manager/wiki/Artisan-Commands)
 
-Обязательно загляните на страницу artisan команд, это важно.
 
 ```php
 "scripts": {
@@ -19,3 +17,7 @@
  },
  
  ```
+ 
+Инструкция к пакету по ссылке [vsch/laravel-translation-manager](https://github.com/vsch/laravel-translation-manager/wiki/Artisan-Commands)
+ 
+Обязательно загляните на страницу artisan команд, это важно.
