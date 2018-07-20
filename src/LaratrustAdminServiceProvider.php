@@ -60,8 +60,6 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
             }
             File::deleteDirectory(base_path('app/Http/Controllers/Auth'));
             File::deleteDirectory(base_path('resources/views/auth'));
-            File::deleteDirectory(base_path('app/Providers'));
-            File::deleteDirectory(base_path('app/config'));
             File::delete([
                 base_path('app/Permission.php'),
                 base_path('app/Role.php'),
@@ -77,6 +75,9 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
                 base_path('webpack.mix.js'),
             ]);
         });
+        // base_path('bootstrap/app.php'),
+        // base_path('app/Providers')
+        // base_path('app/config')
         Artisan::command('StartedPackAdminLaravel:publish', function () {
             $this->info("StartedPackAdminLaravel publish");
             $date = date('Y_m_d_His');
