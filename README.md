@@ -3,12 +3,15 @@
 
 # Внимание!!! Используйте этот пакет только на проект, который не содержит вашего кода. Команда на установку заменяет стандартные файлы
 
-Вставьте это в файл composer.json
+Вставьте это в файл `composer.json`
 
-`"scripts": {
+```
+"scripts": {
      "post-update-cmd": [
          ... other stuff ...
          "php artisan vendor:publish --provider=\"Vsch\\TranslationManager\\ManagerServiceProvider\" --tag=public --force",
          ... other stuff ...
      ]
- },`
+ },
+ 
+ ```
