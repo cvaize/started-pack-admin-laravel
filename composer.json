@@ -1,0 +1,31 @@
+{
+    "name": "cvaize/started-pack-admin-laravel",
+    "type": "library",
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "license": "GPL-3.0",
+    "version": "0.1.0",
+    "authors": [
+        {
+            "name": "cvaize",
+            "email": "cvaize@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "StartedPackAdminLaravel\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "StartedPackAdminLaravel\\StartedPackAdminLaravelServiceProvider"
+            ],
+            "aliases": {
+                "StartedPackAdminLaravel": "StartedPackAdminLaravel\\StartedPackAdminLaravelFacade"
+            }
+        }
+    },
+    "minimum-stability": "stable"
+}
