@@ -16,18 +16,18 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
 
     public function register()
     {
-        Artisan::command('StartedPackAdminLaravel:init', function () {
-            $this->info("StartedPackAdminLaravel Initialization");
-            $cmd = 'php artisan StartedPackAdminLaravel:install';
-            $cmd .= ' && php artisan StartedPackAdminLaravel:install';
-            $cmd .= ' && php artisan StartedPackAdminLaravel:replace';
-            $cmd .= ' && php artisan StartedPackAdminLaravel:front';
-            system($cmd);
-        });
+//        Artisan::command('StartedPackAdminLaravel:init', function () {
+//            $this->info("StartedPackAdminLaravel Initialization");
+//            $cmd = 'php artisan StartedPackAdminLaravel:install';
+//            $cmd .= ' && php artisan StartedPackAdminLaravel:install';
+//            $cmd .= ' && php artisan StartedPackAdminLaravel:replace';
+//            $cmd .= ' && php artisan StartedPackAdminLaravel:front';
+//            system($cmd);
+//        });
         Artisan::command('StartedPackAdminLaravel:install', function () {
             $this->info("StartedPackAdminLaravel install");
             $cmd = 'composer update';
-//            $cmd .= ' && php artisan make:auth';
+            $cmd .= ' && php artisan make:auth';
             $cmd .= ' && composer require "santigarcor/laratrust:^5.0"';
             $cmd .= ' && composer require "laravelcollective/html:^5.6.10"';
             $cmd .= ' && composer require "fzaninotto/faker:^1.8.0"';
@@ -35,7 +35,7 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
             $cmd .= ' && composer require "vsch/laravel-translation-manager:~2.6"';
             $cmd .= ' && composer require "barryvdh/laravel-debugbar:^3.1"';
 //            $cmd .= ' && php artisan vendor:publish --tag="laratrust"';
-//            $cmd .= ' && php artisan laratrust:setup';
+            $cmd .= ' && php artisan laratrust:setup';
 //            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=migrations';
 //            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=config';
 //            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=public --force';
