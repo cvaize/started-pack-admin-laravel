@@ -65,9 +65,11 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
             File::copyDirectory(__DIR__.'/Vendor/routes', base_path('routes'));
             File::copyDirectory(__DIR__.'/Vendor/public', base_path('public'));
             File::copy(__DIR__.'/Vendor/webpack.mix.js', base_path('webpack.mix.js'));
-            system('composer update');
-            system('composer dump-autoload');
-            system('php artisan config:clear');
+            $cmd = 'composer update';
+            $cmd .= ' && php artisan cache:clear';
+            $cmd .= ' && php artisan config:clear';
+            $cmd .= ' && composer dump-autoload';
+            system($cmd);
         });
         Artisan::command('StartedPackAdminLaravel:front', function () {
             $this->info("StartedPackAdminLaravel front");
