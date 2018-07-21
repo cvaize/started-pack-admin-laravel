@@ -16,14 +16,14 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
 
     public function register()
     {
-//        Artisan::command('StartedPackAdminLaravel:init', function () {
-//            $this->info("StartedPackAdminLaravel Initialization");
-//            $cmd = 'php artisan StartedPackAdminLaravel:install';
-//            $cmd .= ' && php artisan StartedPackAdminLaravel:install';
-//            $cmd .= ' && php artisan StartedPackAdminLaravel:replace';
-//            $cmd .= ' && php artisan StartedPackAdminLaravel:front';
-//            system($cmd);
-//        });
+        Artisan::command('StartedPackAdminLaravel:init', function () {
+            $this->info("StartedPackAdminLaravel Initialization");
+            $cmd = 'php artisan StartedPackAdminLaravel:install';
+            $cmd .= ' && php artisan StartedPackAdminLaravel:install';
+            $cmd .= ' && php artisan StartedPackAdminLaravel:replace';
+            $cmd .= ' && php artisan StartedPackAdminLaravel:front';
+            system($cmd);
+        });
         Artisan::command('StartedPackAdminLaravel:install', function () {
             $this->info("StartedPackAdminLaravel install");
             $cmd = 'composer update';
@@ -34,13 +34,13 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
             $cmd .= ' && composer require "mcamara/laravel-localization:^1.3"';
             $cmd .= ' && composer require "vsch/laravel-translation-manager:~2.6"';
             $cmd .= ' && composer require "barryvdh/laravel-debugbar:^3.1"';
-//            $cmd .= ' && php artisan vendor:publish --tag="laratrust"';
+            $cmd .= ' && php artisan vendor:publish --tag="laratrust"';
             $cmd .= ' && php artisan laratrust:setup';
-//            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=migrations';
-//            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=config';
-//            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=public --force';
-//            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=lang';
-//            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=views';
+            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=migrations';
+            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=config';
+            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=public --force';
+            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=lang';
+            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=views';
             $cmd .= ' && composer dump-autoload';
             system($cmd);
         });
