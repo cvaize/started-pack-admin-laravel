@@ -42,7 +42,7 @@ class StartedPackAdminLaravelServiceProvider extends ServiceProvider
 //            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=lang';
 //            $cmd .= ' && php artisan vendor:publish --provider="Vsch\TranslationManager\ManagerServiceProvider" --tag=views';
 //            $cmd .= ' && composer dump-autoload';
-//            system($cmd);
+            system($cmd);
         });
         Artisan::command('StartedPackAdminLaravel:replace', function () {
             $this->info("StartedPackAdminLaravel Replace All Files");
