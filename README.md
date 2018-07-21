@@ -5,11 +5,19 @@
 
 1) Установка пакета `composer require cvaize/started-pack-admin-laravel`
 
-2) Команда инициализации `php artisan StartedPackAdminLaravel:init`
+2) Команда установки пакетов composer `php artisan StartedPackAdminLaravel:install`
 
-3) Настройте подключение к базе данных. Выполните миграции. Вы так же можете выполнить посев, для посева демо данных.
+3) Команда замены файлов `php artisan StartedPackAdminLaravel:replace`
 
-4) Вставьте это в файл `composer.json`. Это позволит вам избежать несостыковок в последующих обновлениях пакета `vsch/laravel-translation-manager`
+4) Команды чтобы подтянуть зависимости `composer update && php artisan cache:clear && php artisan config:clear`
+
+5) Команды установки фронта `php artisan StartedPackAdminLaravel:front`
+
+6) Настройте подключение к базе данных в файле `.env`. Выполните миграции `php artisan migrate`. Вы так же можете выполнить посев  `php artisan db:seed`, для посева демо данных.
+
+7) Выполните импорт языковых переменных `php artisan translations:import`
+
+8) Вставьте это в файл `composer.json`. Это позволит вам избежать несостыковок в последующих обновлениях пакета `vsch/laravel-translation-manager`
 ```php
 "scripts": {
      "post-update-cmd": [
